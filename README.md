@@ -2,7 +2,7 @@
 
 <h1 align="center" style="border-bottom: none;">My Homepage</h1>
 <h3 align="center">
-    <a href="vichoko.cl">vichoko.cl</a>
+    <a href="https://vichoko.cl">vichoko.cl</a>
 </h3>
 
 <p align="center">
