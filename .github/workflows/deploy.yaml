@@ -1,9 +1,10 @@
-name: 'deploy'
+name: 'deploy to cloud storage'
 
 on:
   push:
-    branches:
-      - 'main'
+    paths:
+      - 'src/**'
+
 
 jobs:
   deploy:
