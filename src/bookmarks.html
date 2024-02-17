@@ -1,0 +1,86 @@
+
+<head>
+    <title>VICHOKO.cl</title>
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono|Space+Mono|VT323|IBM+Plex+Mono&effect=anaglyph"
+          rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div id="header"></div>
+        <br>
+        <div class="paragraph">
+            <div id="toc"></div>
+            <h2>AI & ML</h2>
+            <ul>
+                <li><a href="https://www.example.com">Example AI Link 1</a></li>
+                <li><a href="https://www.example.com">Example AI Link 2</a></li>
+                <li>
+                    <h3>Reinforcement Learning</h3>
+                    <ul>
+                        <li><a href="https://www.example.com">Example RL Link 1</a></li>
+                        <li><a href="https://www.example.com">Example RL Link 2</a></li>
+                        <!-- Add more Reinforcement Learning links here -->
+                    </ul>
+                </li>
+                <!-- Add more AI & ML links here -->
+            </ul>
+
+            <h2>Geophysics</h2>
+            <ul>
+                <li><a href="https://www.example.com">Example Geophysics Link 1</a></li>
+                <li><a href="https://www.example.com">Example Geophysics Link 2</a></li>
+                <!-- Add more Geophysics links here -->
+            </ul>
+
+            <h2>Music</h2>
+            <ul>
+                <li><a href="https://www.example.com">Example Music Link 1</a></li>
+                <li><a href="https://www.example.com">Example Music Link 2</a></li>
+                <!-- Add more Music links here -->
+            </ul>
+        </div>
+    </div>
+    <script>
+        $(function(){
+          $("#header").load("header.html");
+        });
+    </script>
+    <script>
+        $(function(){
+          $("#header").load("header.html");
+        });
+    </script>
+<script>
+$(document).ready(function() {
+    var toc = $("#toc").append($("<h2>Table of Contents</h2><ul></ul>"));
+    var lastLevel = 2;
+
+    $("h2, h3").not("#toc h2, #toc h3").each(function(i) {
+        $(this).attr("id", "heading" + i);
+    });
+
+    $("h2, h3").not("#toc h2, #toc h3").each(function() {
+        var heading = $(this);
+        var level = parseInt(this.tagName.substring(1));
+        var listItem = $("<li></li>");
+        $("<a></a>").text(heading.text()).attr("href", "#" + heading.attr("id")).appendTo(listItem);
+
+        if (level == lastLevel) {
+            listItem.appendTo("#toc > ul");
+        } else if (level > lastLevel) {
+            var newUl = $("<ul></ul>");
+            $("#toc li:last").append(newUl);
+            listItem.appendTo(newUl);
+        } else {
+            listItem.appendTo("#toc > ul");
+        }
+
+        lastLevel = level;
+    });
+});
+
+</script>
+</body>
