@@ -6,7 +6,6 @@
     <link href="styles.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -53,44 +52,53 @@
         </div>
     </div>
     <script>
-        $(function(){
-          $("#header").load("header.html");
-        });
+        fetch("header.html")
+          .then(r => r.text())
+          .then(h => document.getElementById("header").innerHTML = h);
     </script>
     <script>
-        $(function(){
-          $("#header").load("header.html");
-        });
-    </script>
-<script>
-$(document).ready(function() {
-    var toc = $("#toc").append($("<h2>Table of Contents</h2><ul></ul>"));
-    var lastLevel = 2;
+document.addEventListener("DOMContentLoaded", function() {
+    var toc = document.getElementById("toc");
+    var tocHeading = document.createElement("h2");
+    tocHeading.textContent = "Table of Contents";
+    toc.appendChild(tocHeading);
+    var headingUl = document.createElement("ul");
+    toc.appendChild(headingUl);
 
-    $("h2, h3").not("#toc h2, #toc h3").each(function(i) {
-        $(this).attr("id", "heading" + i);
+    var allHeadings = document.querySelectorAll("h2, h3");
+    var headings = [];
+    for (var i = 0; i < allHeadings.length; i++) {
+        if (!allHeadings[i].closest("#toc")) {
+            headings.push(allHeadings[i]);
+        }
+    }
+
+    headings.forEach(function(h, i) {
+        h.id = "heading" + i;
     });
 
-    $("h2, h3").not("#toc h2, #toc h3").each(function() {
-        var heading = $(this);
-        var level = parseInt(this.tagName.substring(1));
-        var listItem = $("<li></li>");
-        $("<a></a>").text(heading.text()).attr("href", "#" + heading.attr("id")).appendTo(listItem);
+    var lastLevel = 2;
+    headings.forEach(function(h) {
+        var level = parseInt(h.tagName.substring(1));
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        a.textContent = h.textContent;
+        a.href = "#" + h.id;
+        li.appendChild(a);
 
-        if (level == lastLevel) {
-            listItem.appendTo("#toc > ul");
+        if (level === lastLevel) {
+            headingUl.appendChild(li);
         } else if (level > lastLevel) {
-            var newUl = $("<ul></ul>");
-            $("#toc li:last").append(newUl);
-            listItem.appendTo(newUl);
+            var newUl = document.createElement("ul");
+            headingUl.lastElementChild.appendChild(newUl);
+            newUl.appendChild(li);
         } else {
-            listItem.appendTo("#toc > ul");
+            headingUl.appendChild(li);
         }
 
         lastLevel = level;
     });
 });
-
 </script>
 </body>
 </html>

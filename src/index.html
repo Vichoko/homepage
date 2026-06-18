@@ -6,7 +6,6 @@
     <link href="styles.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async
             src="https://www.googletagmanager.com/gtag/js?id=UA-127737963-1"></script>
@@ -31,9 +30,9 @@
     </div>
 </div>
 <script>
-    $(function(){
-      $("#header").load("header.html");
-    });
+    fetch("header.html")
+      .then(r => r.text())
+      .then(h => document.getElementById("header").innerHTML = h);
 </script>
 </body>
 </html>
