@@ -1,11 +1,20 @@
-
+<html lang="en">
 <head>
     <title>VICHOKO.cl</title>
-    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono|Space+Mono|VT323|IBM+Plex+Mono&effect=anaglyph"
+    <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono|Space+Mono|VT323|IBM+Plex+Mono&effect=anaglyph&display=swap"
           rel="stylesheet">
     <link href="../styles.css" rel="stylesheet">
     <meta charset="UTF-8">
-    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CL4HWBEGG6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-CL4HWBEGG6');
+    </script>
     <style>
         table {
             border-collapse: collapse;
@@ -195,8 +204,9 @@
     </div>
 </div>
 <script>
-    $(function(){
-      $("#header").load("../header.html");
-    });
+    fetch("../header.html")
+      .then(r => r.text())
+      .then(h => document.getElementById("header").innerHTML = h);
 </script>
 </body>
+</html>
