@@ -104,3 +104,27 @@ body {
 h3 {
     line-height: 0.9;
 }
+
+/* ---- Bookmarks Link Colors ---- */
+.paragraph a {
+    color: #66ff66;
+    text-decoration: none;
+}
+.paragraph a:hover {
+    background-color: #1a1a1a;
+    text-decoration: underline;
+}
+.paragraph a:visited {
+    color: #2d8a2d;
+}
+.paragraph a:active {
+    color: #99ff99;
+}
+
+.paragraph h2 {
+    margin-top: 1.5em;
+    margin-bottom: 0.3em;
+}
+.paragraph h3 {
+    margin-bottom: 0.2em;
+}
