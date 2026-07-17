@@ -1,0 +1,41 @@
+name: PR Title Check
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened]
+
+permissions:
+  pull-requests: read
+  contents: read
+
+jobs:
+  check-pr-title:
+    name: Check PR Title Format
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check PR Title
+        uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          types: |
+            feat
+            fix
+            docs
+            style
+            refactor
+            perf
+            test
+            build
+            ci
+            chore
+            revert
+          # Require scope in parentheses — e.g. "feat(scope): description"
+          requireScope: true
+          # Allow any scope (free-form, no predefined list)
+          subjectPattern: ^(?![A-Z]).+$
+          subjectPatternError: |
+            The subject "{subject}" found in the pull request title "{title}"
+            didn't match the configured pattern. Please use lowercase subject.
+          ignoreLabels: |
+            ignore-semantic-pull-request
